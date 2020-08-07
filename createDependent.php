@@ -48,7 +48,7 @@
 				$param_Sex = $Sex;
 				$param_Bdate = $Bdate;
 				$param_Relationship = $Relationship;
-        
+				echo $Ssn.$Dependent_name.$Sex.$Bdate.$Relationship;
             // Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
                // Records created successfully. Redirect to landing page
