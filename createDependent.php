@@ -1,10 +1,8 @@
 <?php
 	session_start();
-    ob_start();
     if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
         $_SESSION["Ssn"] = $_GET["Ssn"];
     }
-	$Ssn = $_SESSION["Ssn"];
 	// Include config file
 	require_once "config.php";
 ?>
