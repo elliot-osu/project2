@@ -117,24 +117,26 @@
 ?>	
 
 	<form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
-		<div class="form-group <?php echo (!empty($Ssn_err)) ? 'has-error' : ''; ?>">
-            <label>Project number & name</label>
-			<select name="Pno" class="form-control">
-			<?php
-
-				for($i=0; $i<$num_row; $i++) {
-					$Pnos=mysqli_fetch_row($result);
-					echo "<option value='$Pnos[0]' >".$Pnos[0]."  ".$Pnos[1]."</option>";
-				}
-			?>
-			</select>	
-            <span class="help-block"><?php echo $Pno_err;?></span>
-		</div>
-		<div class="form-group <?php echo (!empty($Hours_err)) ? 'has-error' : ''; ?>">
-			<label>Hours </label>
-			<input type="number" name="Hours" class="form-control" min="1" max="80" value="">
-			<span class="help-block"><?php echo $Hours_err;?></span>
-		</div>
+        <div class="form-group <?php echo (!empty($Fname_err)) ? 'has-error' : ''; ?>">
+            <label>Dependent's Name</label>
+            <input type="text" name="Dependent_name" class="form-control" value="<?php echo $Dependent_name; ?>">
+            <span class="help-block"><?php echo $Dependent_name_err;?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($Fname_err)) ? 'has-error' : ''; ?>">
+            <label>Relationship</label>
+            <input type="text" name="Relationship" class="form-control" value="<?php echo $Relationship; ?>">
+            <span class="help-block"><?php echo $Relationship_err;?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($Sex_err)) ? 'has-error' : ''; ?>">
+            <label>Sex</label>
+            <input type="text" name="Sex" class="form-control" value="<?php echo $Sex; ?>">
+            <span class="help-block"><?php echo $Sex_err;?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($Birth_err)) ? 'has-error' : ''; ?>">
+            <label>Birth date</label>
+            <input type="date" name="Bdate" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+            <span class="help-block"><?php echo $Birth_err;?></span>
+        </div>
 		<div>
 			<input type="submit" class="btn btn-success pull-left" value="Submit">	
 			&nbsp;
