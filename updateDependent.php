@@ -49,6 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($Dependent_name)){
         $Dependent_name_err = "Please enter a Dependent Name.";
     } 
+    echo $Dependent_name;
     // Validate Sex
     $Sex = trim($_POST["Sex"]);
     if(empty($Sex)){
@@ -71,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssdsss", $param_New_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship, $param_Essn, $param_Dependent_name);
+            mysqli_stmt_bind_param($stmt, "ssssss", $param_New_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship, $param_Essn, $param_Dependent_name);
             
             // Set parameters
             $param_New_Dependent_name = $Dependent_name;
