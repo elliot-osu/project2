@@ -1,8 +1,7 @@
 <?php
 	session_start();
-    if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-        $_SESSION["Ssn"] = $_GET["Ssn"];
-    }
+	ob_start();
+	$Ssn = $_SESSION["Ssn"];
 	// Include config file
 	require_once "config.php";
 ?>
@@ -101,21 +100,7 @@
                     <div class="page-header">
                         <h3>Create a Dependent</h3>
                     </div>
-				
-<?php
-    echo $SQL_err;	
-    echo"<h4> Employee SSN =".$param_Ssn."</h4><p>";	
-	$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-	if (!$conn) {
-		die('Could not connect: ' . mysqli_error());
-	}
-	$sql = "SELECT Pnumber, Pname FROM PROJECT";
-	$result = mysqli_query($conn, $sql);
-	if (!$result) {
-		die("Query to show fields from table failed");
-	}
-	$num_row = mysqli_num_rows($result);	
-?>	
+					<h4> Employee SSN =".$param_Ssn."</h4><p>
 
 	<form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
         <div class="form-group <?php echo (!empty($Fname_err)) ? 'has-error' : ''; ?>">
