@@ -4,6 +4,7 @@
 	require_once "config.php";
  
 // Define variables and initialize with empty values
+// Note: You can not update SSN 
 $Dependent_name = $Sex = $Bdate = $Relationship = "";
 $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err = "" ;
 // Form default values
@@ -59,9 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $Relationship = trim($_POST["Relationship"]);
     if(empty($Relationship)){
         $Relationship_err = "Please enter a Relationship.";
-    } $Dno_err = "Please enter department number.";    	
-	}
-
+    } 
     // Check input errors before inserting into database
     if(empty($Dependent_name_err) && empty($Sex_err) && empty($Bdate_err) && empty($Relationship_err) ){
         // Prepare an update statement
@@ -87,20 +86,69 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             } else{
                 echo "<center><h2>Error when updating</center></h2>";
             }
-        }        
+        }           
         // Close statement
         mysqli_stmt_close($stmt);
     }
     
     // Close connection
     mysqli_close($link);
+} else {
+
+    // Check existence of sID parameter before processing further
+	// Form default values
+
+    if((isset($_GET["Essn"]) && !empty(trim($_GET["Essn"])))&& (isset($_GET["Dependent_name"]) && !empty(trim($_GET["Dependent_name"])))){
+        $_SESSION["Essn"] = $_GET["Essn"];
+        $_SESSION["Dependent_name"] = $_GET["Dependent_name"];
+		// Prepare a select statement
+        $sql1 = "SELECT * FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
+  
+		if($stmt1 = mysqli_prepare($link, $sql1)){
+			// Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_Essn, $param_Dependent_name);    
+            // Set parameters
+            $param_Essn = $Essn;
+            $param_Dependent_name = $Dependent_name;
+
+			// Attempt to execute the prepared statement
+			if(mysqli_stmt_execute($stmt1)){
+				$result1 = mysqli_stmt_get_result($stmt1);
+                if(mysqli_num_rows($result1) > 0){
+                    $row = mysqli_fetch_array($result1);
+                    $Sex = $row['Sex'];
+                    $Bdate = $row['Bdate'];
+                    $Relationship = $row['Relationship'];
+                }
+                 else{
+					// URL doesn't contain valid id. Redirect to error page
+					header("location: error.php");
+					exit();
+				}
+                
+			} else{
+				echo "Error in SSN while updating";
+			}
+		
+		}
+			// Close statement
+			mysqli_stmt_close($stmt);
+        
+			// Close connection
+			mysqli_close($link);
+	}  else{
+        // URL doesn't contain id parameter. Redirect to error page
+        header("location: error.php");
+        exit();
+	}	
+}
 ?>
  
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>College DB</title>
+    <title>Employee DB</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{
@@ -143,7 +191,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="submit" class="btn btn-success pull-left" value="Submit">	
                             &nbsp;
                             <a href="viewDependents.php" class="btn btn-primary">Cancel</a>
-
                         </div>
                     </form>
                 </div>
