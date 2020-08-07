@@ -218,7 +218,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>						
                         <input type="hidden" name="Ssn" value="<?php echo $Ssn; ?>"/>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
+                        <a href="viewDependents.php" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>        

@@ -49,7 +49,7 @@ if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
 if(isset($_SESSION["Ssn"]) ){
 	
     // Prepare a select statement
-    $sql = "SELECT P.Pname, P.Pnumber, WO.Hours, WO.Essn FROM PROJECT P, WORKS_ON WO WHERE WO.Essn = ? AND WO.Pno = P.Pnumber";
+    $sql = "SELECT D.Dependent_name, D.Sex, D.Bdate, D.Relationship FROM DEPENDENT D WHERE D.Essn = ?";
 
 	//$sql = "SELECT Essn, Pno, Hours From WORKS_ON WHERE Essn = ? ";   
     if($stmt = mysqli_prepare($link, $sql)){
@@ -78,10 +78,10 @@ if(isset($_SESSION["Ssn"]) ){
 				// output data of each row
                     while($row = mysqli_fetch_array($result)){
                         echo "<tr>";
-                        echo "<td>" . $row['Pnumber'] . "</td>";
-                        echo "<td>" . $row['Pname'] . "</td>";
-                        echo "<td>" . $row['Hours'] . "</td>";
-                        echo "<td>" . $row['Hours'] . "</td>";
+                        echo "<td>" . $row['Dependent_name'] . "</td>";
+                        echo "<td>" . $row['Sex'] . "</td>";
+                        echo "<td>" . $row['Bdate'] . "</td>";
+                        echo "<td>" . $row['Relationship'] . "</td>";
                         echo "<td>";
                         echo "<a href='updateDependent.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                         echo "<a href='deleteDependent.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";

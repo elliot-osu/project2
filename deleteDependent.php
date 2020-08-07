@@ -69,7 +69,7 @@
                             <input type="hidden" name="Ssn" value="<?php echo ($_SESSION["Ssn"]); ?>"/>
                             <p>Are you sure you want to delete the record for <?php echo ($_SESSION["Ssn"]); ?>?</p><br>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="index.php" class="btn btn-default">No</a>
+                                <a href="viewDependents.php" class="btn btn-default">No</a>
                             </p>
                         </div>
                     </form>
