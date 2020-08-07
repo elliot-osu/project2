@@ -36,7 +36,7 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">View Dependents</h2>
-						<a href="addProject.php" class="btn btn-success pull-right">Add New Dependent</a>
+						<a href="createDependent.php" class="btn btn-success pull-right">Add New Dependent</a>
                     </div>
 <?php
     // Include config file
@@ -83,8 +83,8 @@ if(isset($_SESSION["Ssn"]) ){
                         echo "<td>" . $row['Hours'] . "</td>";
                         echo "<td>" . $row['Hours'] . "</td>";
                         echo "<td>";
-                        echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                        echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                        echo "<a href='updateDependent.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        echo "<a href='deleteDependent.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                     echo "</td>";
                         echo "</tr>";
                     }
