@@ -40,10 +40,10 @@
 			$sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) VALUES (?, ?, ?, ?, ?)";
         	if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, 'issds', $param_Ssn, $$param_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship);
+				mysqli_stmt_bind_param($stmt, 'sssds', $param_Essn, $$param_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship);
             
 				// Set parameters
-				$param_Ssn = $Ssn;
+				$param_Essn = $Ssn;
 				$param_Dependent_name = $Dependent_name;
 				$param_Sex = $Sex;
 				$param_Bdate = $Bdate;
@@ -56,8 +56,6 @@
 					exit();
 				} else{
 					// Error
-					header("location: viewDependents.php");
-					exit();
 					$SQL_err = mysqli_error($link);
 				}
 
