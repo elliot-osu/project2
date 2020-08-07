@@ -16,14 +16,14 @@ if((isset($_GET["Essn"]) && !empty(trim($_GET["Essn"])))&& (isset($_GET["Depende
     $Dependent_name = $_SESSION["Dependent_name"];
     // Prepare a select statement
     $sql1 = "SELECT Sex, Bdate, Relationship FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
-    echo $sql1;
+    // echo $sql1;
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_Essn, $param_Dependent_name);    
         // Set parameters
         $param_Essn = $Essn;
         $param_Dependent_name = $Dependent_name;
-        echo $param_Essn.$param_Dependent_name;
+        // echo $param_Essn.$param_Dependent_name;
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt1)){
             $result1 = mysqli_stmt_get_result($stmt1);
@@ -49,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($Dependent_name)){
         $Dependent_name_err = "Please enter a Dependent Name.";
     } 
-    echo $Dependent_name;
+    // echo $Dependent_name;
     // Validate Sex
     $Sex = trim($_POST["Sex"]);
     if(empty($Sex)){
