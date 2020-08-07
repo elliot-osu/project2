@@ -12,15 +12,17 @@ $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err = "" ;
 if((isset($_GET["Essn"]) && !empty(trim($_GET["Essn"])))&& (isset($_GET["Dependent_name"]) && !empty(trim($_GET["Dependent_name"])))){
     $_SESSION["Essn"] = $_GET["Essn"];
     $_SESSION["Dependent_name"] = $_GET["Dependent_name"];
+    $Essn = $_SESSION["Essn"];
+    $Dependent_name = $_SESSION["Dependent_name"];
     // Prepare a select statement
     $sql1 = "SELECT * FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
-    // echo $sql1;
+    echo $sql1;
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_Essn, $param_Dependent_name);    
         // Set parameters
-        $param_Essn = $_SESSION["Essn"];
-        $param_Dependent_name = $_SESSION["Dependent_name"];
+        $param_Essn = $Essn;
+        $param_Dependent_name = $Dependent_name;
         echo $param_Essn.$param_Dependent_name;
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt1)){
@@ -101,6 +103,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if((isset($_GET["Essn"]) && !empty(trim($_GET["Essn"])))&& (isset($_GET["Dependent_name"]) && !empty(trim($_GET["Dependent_name"])))){
         $_SESSION["Essn"] = $_GET["Essn"];
         $_SESSION["Dependent_name"] = $_GET["Dependent_name"];
+        $Essn = $_SESSION["Essn"];
+        $Dependent_name = $_SESSION["Dependent_name"];
 		// Prepare a select statement
         $sql1 = "SELECT * FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
   
@@ -110,7 +114,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Set parameters
             $param_Essn = $Essn;
             $param_Dependent_name = $Dependent_name;
-
 			// Attempt to execute the prepared statement
 			if(mysqli_stmt_execute($stmt1)){
 				$result1 = mysqli_stmt_get_result($stmt1);
