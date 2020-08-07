@@ -14,7 +14,7 @@ if((isset($_GET["Essn"]) && !empty(trim($_GET["Essn"])))&& (isset($_GET["Depende
     $_SESSION["Dependent_name"] = $_GET["Dependent_name"];
     // Prepare a select statement
     $sql1 = "SELECT * FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
-  
+    echo $sql1;
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_Essn, $param_Dependent_name);    
@@ -97,7 +97,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Check existence of sID parameter before processing further
 	// Form default values
-
     if((isset($_GET["Essn"]) && !empty(trim($_GET["Essn"])))&& (isset($_GET["Dependent_name"]) && !empty(trim($_GET["Dependent_name"])))){
         $_SESSION["Essn"] = $_GET["Essn"];
         $_SESSION["Dependent_name"] = $_GET["Dependent_name"];
