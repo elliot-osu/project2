@@ -56,8 +56,8 @@
             // Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
                // Records created successfully. Redirect to landing page
-				//    header("location: index.php");
-				//	exit();
+				   header("location: viewDependents.php");
+					exit();
 				} else{
 					// Error
 					
