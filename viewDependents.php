@@ -62,15 +62,20 @@ if(isset($_SESSION["Ssn"]) ){
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             $result = mysqli_stmt_get_result($stmt);
-    
-			echo"<h4> Projects for ".$Lname." &nbsp      SSN =".$param_Ssn."</h4><p>";
+			echo"<h4> Dependent list for SSN =".$param_Ssn."</h4><p>";
 			if(mysqli_num_rows($result) > 0){
 				echo "<table class='table table-bordered table-striped'>";
                     echo "<thead>";
                         echo "<tr>";
-                            echo "<th width = 20%>Project Number</th>";
-                            echo "<th>Project Name</th>";
-                            echo "<th>Hours</th>";
+                            echo "<th width = 20%>Dependent's Name</th>";
+                            echo "<th>Sex</th>";
+                            echo "<th>Birthdate</th>";
+                            echo "<th>Relationship</th>";
+                            echo "<th>Action</th>";
+                            echo "<td>";
+                            echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                            echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                        echo "</td>";
                         echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";							
