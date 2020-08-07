@@ -115,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h3>Update Record for SSN =  <?php echo $_GET["Ssn"]; ?> </H3>
+                        <h3>Update Record for SSN =  <?php echo $_GET["Essn"]; ?> </H3>
                     </div>
                     <p>Please edit the input values and submit to update.
                         <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
