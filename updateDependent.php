@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting into database
     if(empty($Dependent_name_err) && empty($Sex_err) && empty($Bdate_err) && empty($Relationship_err) ){
         // Prepare an update statement
-        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Address=?, Bdate = ?, Relationship = ? WHERE Essn=? AND Dependent_name=?";
+        $sql = "UPDATE DEPENDENT SET Dependent_name=?, Sex=?, Bdate = ?, Relationship = ? WHERE Essn=? AND Dependent_name=?";
     
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -76,12 +76,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_New_Dependent_name = $Dependent_name;
+            echo $param_New_Dependent_name;
 			$param_Sex = $Sex;            
 			$param_Bdate = $Bdate;
             $param_Relationship = $Relationship;
             $param_Essn = $_SESSION["Essn"];
             $param_Dependent_name = $_SESSION["Dependent_name"];
-            
+            echo $param_Dependent_name;
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records updated successfully. Redirect to landing page
