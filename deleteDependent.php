@@ -1,25 +1,25 @@
 <?php
 	session_start();
-	if((isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"])))&& (isset($_GET["Dependent_name"]) && !empty(trim($_GET["Dependent_name"])))){
-		$_SESSION["Ssn"] = $_GET["Ssn"];
+	if((isset($_GET["Essn"]) && !empty(trim($_GET["Essn"])))&& (isset($_GET["Dependent_name"]) && !empty(trim($_GET["Dependent_name"])))){
+		$_SESSION["Essn"] = $_GET["Essn"];
 		$_SESSION["Dependent_name"] = $_GET["Dependent_name"];
 	}
 
     require_once "config.php";
 	// Delete an Employee's record after confirmation
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if((isset($_SESSION["Ssn"]) && !empty($_SESSION["Ssn"])) && (isset($_SESSION["Dependent_name"]) && !empty($_SESSION["Dependent_name"]))){ 
-			$Ssn = $_SESSION['Ssn'];
+		if((isset($_SESSION["Essn"]) && !empty($_SESSION["Essn"])) && (isset($_SESSION["Dependent_name"]) && !empty($_SESSION["Dependent_name"]))){ 
+			$Essn = $_SESSION['Essn'];
 			$Dependent_name = $_SESSION['Dependent_name'];
 			// Prepare a delete statement
-			$sql = "DELETE FROM DEPENDENT WHERE Ssn = ? AND Dependent_name = ?";
+			$sql = "DELETE FROM DEPENDENT WHERE Essn = ? AND Dependent_name = ?";
    
 			if($stmt = mysqli_prepare($link, $sql)){
 			// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "s", $param_Ssn);
+				mysqli_stmt_bind_param($stmt, "s", $param_Essn);
  
 				// Set parameters
-				$param_Ssn = $Ssn;
+				$param_Essn = $Essn;
 				$param_Dependent_name = $Dependent_name;
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
@@ -38,7 +38,7 @@
 		mysqli_close($link);
 	} else{
 		// Check existence of id parameter
-		if(empty(trim($_GET["Ssn"]))){
+		if(empty(trim($_GET["Essn"]))){
 			// URL doesn't contain id parameter. Redirect to error page
 			header("location: error.php");
 			exit();
@@ -68,8 +68,8 @@
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger fade in">
-                            <input type="hidden" name="Ssn" value="<?php echo ($_SESSION["Ssn"]); ?>"/>
-                            <p>Are you sure you want to delete the record for employee <?php echo ($_SESSION["Ssn"]); ?> dependent name <?php echo ($_SESSION["Dependent_name"]); ?>?</p><br>
+                            <input type="hidden" name="Essn" value="<?php echo ($_SESSION["Essn"]); ?>"/>
+                            <p>Are you sure you want to delete the record for employee <?php echo ($_SESSION["Essn"]); ?> dependent name <?php echo ($_SESSION["Dependent_name"]); ?>?</p><br>
                                 <input type="submit" value="Yes" class="btn btn-danger">
                                 <a href="viewDependents.php" class="btn btn-default">No</a>
                             </p>

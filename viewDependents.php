@@ -83,8 +83,8 @@ if(isset($_SESSION["Ssn"]) ){
                         echo "<td>" . $row['Bdate'] . "</td>";
                         echo "<td>" . $row['Relationship'] . "</td>";
                         echo "<td>";
-                        echo "<a href='updateDependent.php?Ssn=". $row['Ssn'] ."&Dependent_name=". $row['Dependent_name'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                        echo "<a href='deleteDependent.php?Ssn=". $row['Ssn'] ."&Dependent_name=". $row['Dependent_name'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                        echo "<a href='updateDependent.php?Ssn=". $row['Essn'] ."&Dependent_name=". $row['Dependent_name'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        echo "<a href='deleteDependent.php?Ssn=". $row['Essn'] ."&Dependent_name=". $row['Dependent_name'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                     echo "</td>";
                         echo "</tr>";
                     }
