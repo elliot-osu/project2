@@ -16,7 +16,7 @@
    
 			if($stmt = mysqli_prepare($link, $sql)){
 			// Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, "s", $param_Essn);
+				mysqli_stmt_bind_param($stmt, "ss", $param_Essn, $param_Dependent_name);
  
 				// Set parameters
 				$param_Essn = $Essn;
