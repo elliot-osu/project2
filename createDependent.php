@@ -41,22 +41,23 @@
         	if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
 				mysqli_stmt_bind_param($stmt, 'sssss', $param_Essn, $$param_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship);
-				echo $sql;
+				// echo $sql;
 				// Set parameters
 				$param_Essn = $Ssn;
 				$param_Dependent_name = $Dependent_name;
 				$param_Sex = $Sex;
 				$param_Bdate = $Bdate;
 				$param_Relationship = $Relationship;
-				echo $Ssn.$Dependent_name.$Sex.$Bdate.$Relationship;
+				// echo $Ssn.$Dependent_name.$Sex.$Bdate.$Relationship;
             // Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
                // Records created successfully. Redirect to landing page
 				   header("location: viewDependents.php");
-					exit();
+				   exit();
 				} else{
 					// Error
 					$SQL_err = mysqli_error($link);
+					echo $SQL_err;
 				}
 
 			}
