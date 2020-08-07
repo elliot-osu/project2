@@ -80,7 +80,10 @@ if(isset($_SESSION["Ssn"]) ){
                         echo "<td>" . $row['Pnumber'] . "</td>";
                         echo "<td>" . $row['Pname'] . "</td>";
                         echo "<td>" . $row['Hours'] . "</td>";
-    
+                        echo "<td>";
+                        echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                    echo "</td>";
                         echo "</tr>";
                     }
                     echo "</tbody>";                            
