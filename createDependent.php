@@ -98,13 +98,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h3>Add a Dependent for SSN = 
-							<?php echo $Ssn;?>			
-						</h3>
+                        <h3>Create a Dependent</h3>
                     </div>
 				
 <?php
-	echo $SQL_err;		
+    echo $SQL_err;	
+    echo"<h4> Employee SSN =".$param_Ssn."</h4><p>";	
 	$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
 		die('Could not connect: ' . mysqli_error());
@@ -137,9 +136,9 @@
 			<span class="help-block"><?php echo $Hours_err;?></span>
 		</div>
 		<div>
-			<input type="submit" class="btn btn-success pull-left" value="Add Project">	
+			<input type="submit" class="btn btn-success pull-left" value="Submit">	
 			&nbsp;
-			<a href="viewDependents.php" class="btn btn-primary">List Dependents</a>
+			<a href="viewDependents.php" class="btn btn-primary">Cancel</a>
 
 		</div>
 	</form>
