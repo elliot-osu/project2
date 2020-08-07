@@ -3,65 +3,40 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$Ssn = $Lname = $Fname = $Salery = $Bdate = $Bdate1 = $Address = $Sex = $Dno = $Super_ssn = "";
-$Ssn_err = $Lname_err = $Fname_err = $Address_err = $Sex_err = $Salary_err = $Dno_err = "" ;
+$Dependent_name = $Sex = $Bdate = $Relationship = "";
+$Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err = "" ;
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate First name
-    $Fname = trim($_POST["Fname"]);
-    if(empty($Fname)){
-        $Fname_err = "Please enter a Fname.";
+    // Validate Dependent Name
+    $Dependent_name = trim($_POST["Dependent_name"]);
+    if(empty($Dependent_name)){
+        $Dependent_name_err = "Please enter a Dependent Name.";
     } elseif(!filter_var($Fname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $Fname_err = "Please enter a valid Fname.";
+        $Dependent_name_err = "Please enter a valid Dependent Name.";
     } 
-    // Validate Last name
-    $Lname = trim($_POST["Lname"]);
-    if(empty($Lname)){
-        $Lname_err = "Please enter a Lname.";
-    } elseif(!filter_var($Lname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $Lname_err = "Please enter a valid Lname.";
-    } 
- 
-    // Validate SSN
-    $Ssn = trim($_POST["Ssn"]);
-    if(empty($Ssn)){
-        $Ssn_err = "Please enter SSN.";     
-    } elseif(!ctype_digit($Ssn)){
-        $Ssn_err = "Please enter a positive integer value of SSN.";
-    } 
-    // Validate Salary
-    $Salary = trim($_POST["Salary"]);
-    if(empty($Salary)){
-        $Salary_err = "Please enter Salary.";     
-    }
-	// Validate Address
-    $Address = trim($_POST["Address"]);
-    if(empty($Address)){
-        $Address_err = "Please enter Address.";     
-    }
 	// Validate Sex
     $Sex = trim($_POST["Sex"]);
     if(empty($Sex)){
         $Sex_err = "Please enter Sex.";     
     }
-	// Validate Birthdate
+    // Validate Birthdate
     $Bdate = trim($_POST["Bdate"]);
-
     if(empty($Bdate)){
-        $SBdate_err = "Please enter birthdate.";     
+        $Bdate_err = "Please enter birthdate.";     
     }	
-
-	// Validate Department
-    $Dno = trim($_POST["Dno"]);
-    if(empty($Dno)){
-        $Dno_err = "Please enter a department number.";     		
-	}
+    // Validate Relationship
+    $Relationship = trim($_POST["Relationship"]);
+    if(empty($Relationship)){
+        $Relationship_err = "Please enter a Relationship.";
+    } elseif(!filter_var($Fname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+        $Relationship_err = "Please enter a valid Relationship";
+    } 
     // Check input errors before inserting in database
     if(empty($Ssn_err) && empty($Lname_err) && empty($Salary_err) 
 				&& empty($Dno_err)&& empty($Address_err) && empty($Sex_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO EMPLOYEE (Ssn, Fname, Lname, Address, Salary, Sex, Bdate, Dno) 
+        $sql = "INSERT INTO DEPENDENT (Ssn, Fname, Lname, Address, Salary, Sex, Bdate, Dno) 
 		        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){

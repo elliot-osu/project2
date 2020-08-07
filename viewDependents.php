@@ -62,7 +62,7 @@ if(isset($_SESSION["Ssn"]) ){
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             $result = mysqli_stmt_get_result($stmt);
-			echo"<h4> Dependent list for SSN =".$param_Ssn."</h4><p>";
+			echo"<h4> Dependent list for ".$Lname." &nbsp      SSN =".$param_Ssn."</h4><p>";
 			if(mysqli_num_rows($result) > 0){
 				echo "<table class='table table-bordered table-striped'>";
                     echo "<thead>";
@@ -92,7 +92,7 @@ if(isset($_SESSION["Ssn"]) ){
                 echo "</table>";				
 				mysqli_free_result($result);
 			} else {
-				echo "No Projects. ";
+				echo "No Dependents. ";
 			}
 				mysqli_free_result($result);
         } else{
