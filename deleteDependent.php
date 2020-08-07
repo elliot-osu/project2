@@ -1,16 +1,18 @@
 <?php
 	session_start();
-	if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
+	if((isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"])))&& (isset($_GET["Dependent_name"]) && !empty(trim($_GET["Dependent_name"])))){
 		$_SESSION["Ssn"] = $_GET["Ssn"];
+		$_SESSION["Dependent_name"] = $_GET["Dependent_name"];
 	}
 
     require_once "config.php";
 	// Delete an Employee's record after confirmation
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if(isset($_SESSION["Ssn"]) && !empty($_SESSION["Ssn"])){ 
+		if((isset($_SESSION["Ssn"]) && !empty($_SESSION["Ssn"])) && (isset($_SESSION["Dependent_name"]) && !empty($_SESSION["Dependent_name"]))){ 
 			$Ssn = $_SESSION['Ssn'];
+			$Dependent_name = $_SESSION['Dependent_name'];
 			// Prepare a delete statement
-			$sql = "DELETE FROM EMPLOYEE WHERE Ssn = ?";
+			$sql = "DELETE FROM DEPENDENT WHERE Ssn = ? AND Dependent_name = ?";
    
 			if($stmt = mysqli_prepare($link, $sql)){
 			// Bind variables to the prepared statement as parameters
@@ -18,14 +20,14 @@
  
 				// Set parameters
 				$param_Ssn = $Ssn;
-       
+				$param_Dependent_name = $Dependent_name;
 				// Attempt to execute the prepared statement
 				if(mysqli_stmt_execute($stmt)){
 					// Records deleted successfully. Redirect to landing page
-					header("location: index.php");
+					header("location: viewDependents.php");
 					exit();
 				} else{
-					echo "Error deleting the employee";
+					echo "Error deleting the dependent";
 				}
 			}
 		}
@@ -67,7 +69,7 @@
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger fade in">
                             <input type="hidden" name="Ssn" value="<?php echo ($_SESSION["Ssn"]); ?>"/>
-                            <p>Are you sure you want to delete the record for <?php echo ($_SESSION["Ssn"]); ?>?</p><br>
+                            <p>Are you sure you want to delete the record for employee <?php echo ($_SESSION["Ssn"]); ?> dependent name <?php echo ($_SESSION["Dependent_name"]); ?>?</p><br>
                                 <input type="submit" value="Yes" class="btn btn-danger">
                                 <a href="viewDependents.php" class="btn btn-default">No</a>
                             </p>

@@ -11,7 +11,7 @@
 	// Define variables and initialize with empty values
 	$Dependent_name = $Sex = $Bdate = $Relationship = "";
 	$Ssn_err = $Dependent_name_err = $Sex_err = $Bdate_err = $Relationship_err = "" ;
- 
+
 	// Processing form data when form is submitted
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		// Validate Dependent Name
@@ -60,7 +60,6 @@
 					exit();
 				} else{
 					// Error
-					
 					$SQL_err = mysqli_error($link);
 				}
 
