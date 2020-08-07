@@ -18,8 +18,6 @@
 		$Dependent_name = trim($_POST["Dependent_name"]);
 		if(empty($Dependent_name)){
 			$Dependent_name_err = "Please enter a Dependent Name.";
-		} elseif(!filter_var($Fname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-			$Dependent_name_err = "Please enter a valid Dependent Name.";
 		} 
 		// Validate Sex
 		$Sex = trim($_POST["Sex"]);
@@ -35,9 +33,7 @@
 		$Relationship = trim($_POST["Relationship"]);
 		if(empty($Relationship)){
 			$Relationship_err = "Please enter a Relationship.";
-		} elseif(!filter_var($Fname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-			$Relationship_err = "Please enter a valid Relationship";
-		} 
+		}
 		// Validate the SSN
 		if(empty($Ssn)){
 			$Ssn_err = "No SSN.";     
