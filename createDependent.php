@@ -34,17 +34,13 @@
 		if(empty($Relationship)){
 			$Relationship_err = "Please enter a Relationship.";
 		}
-		// Validate the SSN
-		if(empty($Ssn)){
-			$Ssn_err = "No SSN.";     
-		}
     // Check input errors before inserting in database
-		if(empty($Ssn_err) && empty($Dependent_name_err) && empty($Sex_err) && empty($Bdate_err) && empty($Relationship_err) ){
+		if(empty($Dependent_name_err) && empty($Sex_err) && empty($Bdate_err) && empty($Relationship_err) ){
         // Prepare an insert statement
 			$sql = "INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship) VALUES (?, ?, ?, ?, ?)";
         	if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-				mysqli_stmt_bind_param($stmt, 'sssds', $param_Ssn, $$param_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship);
+				mysqli_stmt_bind_param($stmt, 'issds', $param_Ssn, $$param_Dependent_name, $param_Sex, $param_Bdate, $param_Relationship);
             
 				// Set parameters
 				$param_Ssn = $Ssn;
