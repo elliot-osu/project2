@@ -56,6 +56,8 @@
 					exit();
 				} else{
 					// Error
+					header("location: viewDependents.php");
+					exit();
 					$SQL_err = mysqli_error($link);
 				}
 
