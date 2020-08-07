@@ -100,7 +100,7 @@
                     <div class="page-header">
                         <h3>Create a Dependent</h3>
                     </div>
-					<h4> Employee SSN =".$param_Ssn."</h4><p>
+					<h4> Employee SSN = <?php echo $Ssn;?></h4><p>
 
 	<form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
         <div class="form-group <?php echo (!empty($Fname_err)) ? 'has-error' : ''; ?>">
